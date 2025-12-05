@@ -1,4 +1,4 @@
-package models;
+package com.BE_JAVA.CRUD.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,28 +22,28 @@ public class Articulo {
     @Column(name="precio", nullable = false)
     private double precio;
 
-    Articulo(long id, String nombre, double precio){
+    public Articulo(long id, String nombre, double precio){
         setId(id); 
         setNombre(nombre);
         setPrecio(precio);
     }
 
-    Articulo (){
+    public Articulo (){
         // Constructor sobrecargado vacío, requerido por JPA (?)
     }
 
     
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    private void setNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    private void setPrecio(double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
