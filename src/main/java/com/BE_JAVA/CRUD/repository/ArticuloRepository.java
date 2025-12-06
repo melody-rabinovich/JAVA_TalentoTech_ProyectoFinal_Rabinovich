@@ -15,7 +15,7 @@ import java.util.List;
 public interface ArticuloRepository extends JpaRepository<Articulo, Long> { // el generic tiene el tipo de dato de la entity y de la PK
     
 
-     /** MÉTODOS INCLUÍDOS AUTOMÁTICAMENTE {
+     /** MÉTODOS "HEREDADOS" DE JPA {
        ========================================
          * findall()
          * findById(Long id)
