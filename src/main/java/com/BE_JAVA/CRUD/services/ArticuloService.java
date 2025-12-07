@@ -12,8 +12,8 @@ public interface ArticuloService {
     // métodos para el contrato
     List<Articulo> findAll();
     Optional<Articulo> findById(Long id);
-    // Articulo save(Articulo articulo);
+    Optional<Articulo> save(Articulo articulo);
     // Articulo update(Long id, Articulo articulo);
-    // Articulo deleteById(Long id);
+    Optional<Articulo> deleteById(Long id);
     
 }

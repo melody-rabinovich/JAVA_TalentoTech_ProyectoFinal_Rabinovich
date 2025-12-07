@@ -1,10 +1,14 @@
 package com.BE_JAVA.CRUD.models;
 
+import java.util.Optional;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity 
@@ -32,6 +36,12 @@ public class Articulo {
         // Constructor sobrecargado vacío, requerido por JPA (?)
     }
 
+    @PrePersist
+    @PreUpdate
+    public void normalizar(){
+        this.nombre = nombre.toUpperCase().trim();
+    }
+    
     
     public void setId(long id) {
         this.id = id;
