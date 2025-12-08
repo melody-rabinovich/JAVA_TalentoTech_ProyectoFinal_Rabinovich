@@ -53,5 +53,19 @@ public class ArticuloServiceImpl implements ArticuloService{
         return articulo;
     }
 
+    @Override
+    public Optional<Articulo> update(Long id, Articulo articulo) {
+       Optional<Articulo> encontrado = findById(id);
+       if(encontrado.isPresent()){
+        if(datosArticuloValidos(articulo.getNombre(), articulo.getPrecio())){
+            Articulo actualizado = encontrado.get();
+            actualizado.setNombre(articulo.getNombre());
+            actualizado.setPrecio(articulo.getPrecio());
+            repositorio.save(actualizado);
+        }
+       }
+       return encontrado;
+    }
+
     
 }

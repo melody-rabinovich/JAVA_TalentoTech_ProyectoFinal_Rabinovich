@@ -13,7 +13,7 @@ public interface ArticuloService {
     List<Articulo> findAll();
     Optional<Articulo> findById(Long id);
     Optional<Articulo> save(Articulo articulo);
-    // Articulo update(Long id, Articulo articulo);
     Optional<Articulo> deleteById(Long id);
+    Optional<Articulo> update(Long id, Articulo articulo);
     
 }

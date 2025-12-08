@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,5 +68,20 @@ public class ArticuloController {
         }
         return response ;
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Articulo> update (@PathVariable Long id,@RequestBody Articulo articulo){
+        Optional<Articulo> actualizado = articuloService.update(id, articulo);
+        ResponseEntity<Articulo> response = null;
+
+        if(actualizado.isPresent()){
+            response = ResponseEntity.ok(actualizado.get());
+        } else{
+            response = ResponseEntity.badRequest().build();
+        }
+        return response;
+        
+    }
+
 
 }
