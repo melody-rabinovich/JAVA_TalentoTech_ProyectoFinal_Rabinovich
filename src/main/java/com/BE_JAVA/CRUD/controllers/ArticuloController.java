@@ -33,18 +33,27 @@ public class ArticuloController {
         this.articuloService = articuloService;
     }
 
+    // GET http://localhost:8080/api/articulos
     @GetMapping
     public List<Articulo> findall(){
         return articuloService.findAll();
     }
 
+    // GET http://localhost:8080/api/articulos/{id}
     @GetMapping("/{id}") // le agrego a la ruta
     public ResponseEntity<Articulo> findById(@PathVariable Long id){
         return articuloService.findById(id) // Llamamos al servicio para buscar el artículo
-                .map(ResponseEntity::ok)  // .map(articulo -> ResponseEntity.ok(articulo))       // Si el artículo existe, devolvemos 200 OK con el cuerpo
+                .map(ResponseEntity::ok)  // Es un map de Optional      //Si el artículo existe, devolvemos 200 OK con el cuerpo
+                // .map(articulo -> ResponseEntity.ok(articulo))       
                 .orElse(ResponseEntity.notFound().build()); // Si no existe, devolvemos 404 Not Found // sólo se ejecuta si el Optional está vacío
     }
 
+    // POST http://localhost:8080/api/articulos/save
+    /*{
+        "nombre":  " - ",
+        "precio": 1
+        }
+     */
     @PostMapping("/save") 
     public ResponseEntity<Articulo> save( @RequestBody Articulo articulo){ // @RequestBody indica que el JSON del cuerpo se mapea a un Articulo
         ResponseEntity<Articulo> response = null;
@@ -57,6 +66,7 @@ public class ArticuloController {
         return response;
     }
 
+    // DELETE http://localhost:8080/api/articulos/delete/{id}
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Articulo> deleteById(@PathVariable Long id){
         Optional<Articulo> eliminado = articuloService.deleteById(id);
@@ -69,6 +79,11 @@ public class ArticuloController {
         return response ;
     }
 
+    // PUT http://localhost:8080/api/articulos/update/{id}
+    /*{
+        "nombre" : " - ",
+        "precio" : 1
+    } */
     @PutMapping("/update/{id}")
     public ResponseEntity<Articulo> update (@PathVariable Long id,@RequestBody Articulo articulo){
         Optional<Articulo> actualizado = articuloService.update(id, articulo);
